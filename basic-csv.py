@@ -1,3 +1,4 @@
+import os
 from openai import OpenAI
 from unittest.mock import MagicMock
 
@@ -9,6 +10,13 @@ class Environment:
     self.prod = "PROD"
 envValue = Environment()
 env = envValue.dev
+print("Environment: " + env)
+
+#current working directory
+wrk = os.getcwd()
+path = "\\data"
+dir =  "{cwd}{prjPath}".format(cwd=wrk, prjPath=path)
+print("Directory: {final}".format(final=dir))
 
 # test object
 def get_mock_openai_client():
@@ -53,7 +61,6 @@ def get_mock_openai_client():
 def getClient():
     client = OpenAI()
     return client
-
 def getResponse(client, role, content):
     
     match env:
@@ -66,7 +73,6 @@ def getResponse(client, role, content):
             return get_mock_openai_client()
         case _:
             return get_mock_openai_client()
-
 def printResponse(response):
     print('--- BEGIN ------------------------------')
     print("Response: " + response.id)
@@ -77,16 +83,39 @@ def printResponse(response):
     print('---------------------------------')
     print("Cost: " + response.usage.total_tokens)
     print('--- END ------------------------------')
-
 def cacheResponse(response):
     print("response cached")
-
 def createResponseRecord(responseId):
     print("repsone record created")
 
 # business logic
+# create client
+print("Starting client ...")
 client = getClient()
+
+# submit response
+print("Submitting request ...")
 response = getResponse(client=client, role="user", content="Hi.")
 
-# results
+# print results
+print("RESPONSE: ")
 printResponse(response=response)
+
+#generate response file
+responseFile = dir + "\\outputs.csv"
+print("Generating output record at {location}".format(location=responseFile))
+resRecord = "{id},{output}".format(id=response.id, output=response.choices[0].message.content)
+outputs = open(responseFile, "at")
+outputs.write(resRecord)
+outputs.close()
+
+#generate transaction record
+file = dir + "\\transactions.csv"
+print("Generating transaction record at {location}".format(location=file))
+tranRecord = "{id},{tokensUsed}".format(id=response.id, tokensUsed=response.usage.total_tokens)
+outputs = open(file, "at")
+outputs.write(tranRecord)   
+outputs.close()
+
+# end
+print("Job comleted.")
