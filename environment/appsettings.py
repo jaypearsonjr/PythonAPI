@@ -12,11 +12,11 @@ class appsettings():
 
 def getConfig():
     config = ConfigParser()
-    configPath = "dev\\PythonAPI\\config.ini"
+    configPath = "config.ini"
 
     dirname = os.getcwd()
     filename = os.path.join(dirname, configPath)
-
+    print(filename)
     config.read(filename)
 
     settings = appsettings()

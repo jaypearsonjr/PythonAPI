@@ -1,12 +1,12 @@
 from openai import OpenAI
-from environment.appsettings import getConfig
+from environment import appsettings as config
 
 def getClient():
     client = OpenAI()
     return client
 
 def getResponse(client, persona, content):
-    settings = getConfig()    
+    settings = config.getConfig()    
     match settings.env:
         case "PROD":
             return client.chat.completions.create(
