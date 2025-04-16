@@ -2,10 +2,12 @@ from chat import openai_client as request
 from environment.directory import *
 from pipeline import csv_storage as csv
 from personas.character import Character
+      
+"""
+    The purpose of this script is to demonstrate the use of OpenAI API to generate a response based on a given persona and query.
+    It also includes functionality to cache the response and log transaction details in a CSV file.
+"""
 
-"""
-startup
-"""
 # environment, current working dir, established in appsettings during client creation
 # persona
 character = Character("philospher")

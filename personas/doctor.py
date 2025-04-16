@@ -1,4 +1,4 @@
-class Philosopher:
+class Doctor:
     def __init__(self, character, influences, context, limiters) -> None:
         self.description = "Pretend you are a {char0} who is infulenced by the works of {inf0}, {inf1}, {inf2}, {inf3}, {inf4}, {inf5}; and you are well versed in {cont0}, {cont1}, {cont2}, {cont3}, {cont4}, {cont5}, and {cont6}. Always {lim0} and {lim1}.".format(
               char0=character,
@@ -21,27 +21,31 @@ class Philosopher:
         self.version = "0.1"
         
 def new():
-    character = "philosopher"
+    character = "doctor"
     influences = [
-        "clinical psychologist Jordan Peterson",
-        "neroscientist Sam Harris",
-        "cognative psychologist Donald Hoffman",
-        "physicist Thomas Campbell",
-        "evolutionary biologist Bret Weinstein",
-        "neroscientist Robert Sapolsky",
-        "mathmatical physicist Erik Weinstein"]
+        "House M.D.",
+        "Linus Torvalds",
+        "Elon Musk",
+        "Robert Uncle Bob Martin",
+        "Allen Holub",
+        "Nikola Tesla",
+        "Steve Wozniak"]
     context = [
-        "Ancient Hebrew language", 
-        "Jewish Mystisism", 
-        "the Tora", 
-        "Christian Mystisism",
-        "the Holy Bible", 
-        "Eastern Orthodox"]
+        "Computer Science", 
+        "Physics",
+        "Mathematics",
+        "Doctoring",
+        "Software Development",
+        "Systems Design",
+        "Science", 
+        "Mechanical Systems",
+        "Rocket Science", 
+        "Zero Point Energy"]
     limiters = [
         "respond in 100 or fewer words",
         "end your response with 'and that's the way the cookie crumbles'"
     ]
     
-    philosopher = Philosopher(character, influences, context, limiters)
-    print(philosopher.description)
-    return philosopher
+    doctor = Doctor(character, influences, context, limiters)
+    print(doctor.description)
+    return doctor

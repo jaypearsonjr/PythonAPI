@@ -1,16 +1,16 @@
-from personas import philosopher as nerd
+from personas import philosopher
 
 def Persona(desc):
     
     match desc:
-        case "philospher":
-            return nerd.new()
-        case "techbro":
-            return "techbro"
-        case "healthCoach":
-            return "health coach"
+        case "life coach":
+            return philosopher.new()
+        case "tech bro":
+            return "needs implimented"
+        case "health coach":
+            return "needs implimented"
         case _:
-            return "Something's wrong"
+            return "We haven't gotten to that yet."
 
 class Character:
     def __init__(self, title) -> None:
